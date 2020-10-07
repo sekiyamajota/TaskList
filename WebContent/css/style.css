@@ -162,3 +162,24 @@ pre {
 h3 {
     font-size: larger;
 }
+
+table#client_list th {
+    font-weight: bold;
+    padding: 10px 2%;
+}
+
+table#client_list .client_name {
+    width: 20%;
+    padding: 10px 2%;
+}
+table#client_list .client_date {
+    width: 20%;
+}
+
+table#client_list .client_title {
+    width: 37%;
+}
+
+table#client_list .client_action {
+    width: 13%;
+}
