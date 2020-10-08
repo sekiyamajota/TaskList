@@ -69,12 +69,12 @@ public class Client {
         this.employee = employee;
     }
 
-    public Date getReport_date() {
+    public Date getClient_date() {
         return client_date;
     }
 
-    public void setReport_date(Date report_date) {
-        this.client_date = report_date;
+    public void setClient_date(Date client_date) {
+        this.client_date = client_date;
     }
 
     public String getTitle() {
