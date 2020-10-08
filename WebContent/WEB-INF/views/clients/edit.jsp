@@ -8,6 +8,13 @@
                 <form method="POST" action="<c:url value='/clients/update' />">
                     <c:import url="_form.jsp" />
                 </form>
+                <script>
+                    function confirmDestroy() {
+                        if(confirm("本当に削除してよろしいですか？")) {
+                            document.forms[1].submit();
+                        }
+                    }
+                </script>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
