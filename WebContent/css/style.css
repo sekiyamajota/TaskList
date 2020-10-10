@@ -157,6 +157,8 @@ table#report_list .report_action {
 
 pre {
     font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    white-space: pre-wrap ;
+    word-wrap: break-word;
 }
 
 h3 {
@@ -182,4 +184,8 @@ table#client_list .client_title {
 
 table#client_list .client_action {
     width: 13%;
+}
+
+h4 {
+    font-size: larger;
 }

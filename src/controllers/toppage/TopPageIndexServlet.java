@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Client;
 import models.Employee;
 import models.Report;
 import utils.DBUtil;
@@ -46,18 +47,32 @@ public class TopPageIndexServlet extends HttpServlet {
         }
         List<Report> reports = em.createNamedQuery("getMyAllReports", Report.class)
                                   .setParameter("employee", login_employee)
-                                  .setFirstResult(15 * (page - 1))
-                                  .setMaxResults(15)
+                                  .setFirstResult(3 * (page - 1))
+                                  .setMaxResults(3)
                                   .getResultList();
 
         long reports_count = (long)em.createNamedQuery("getMyReportsCount", Long.class)
                                      .setParameter("employee", login_employee)
                                      .getSingleResult();
 
+        List<Client> clients = em.createNamedQuery("getMyAllClients", Client.class)
+                                  .setParameter("employee", login_employee)
+                                  .setFirstResult(15 * (page - 1))
+                                  .setMaxResults(15)
+                                  .getResultList();
+
+        long clients_count = (long)em.createNamedQuery("getMyClientsCount", Long.class)
+                                  .setParameter("employee", login_employee)
+                                  .getSingleResult();
+
         em.close();
 
         request.setAttribute("reports", reports);
         request.setAttribute("reports_count", reports_count);
+        request.setAttribute("page", page);
+
+        request.setAttribute("clients", clients);
+        request.setAttribute("clients_count", clients_count);
         request.setAttribute("page", page);
 
         if(request.getSession().getAttribute("flush") != null) {

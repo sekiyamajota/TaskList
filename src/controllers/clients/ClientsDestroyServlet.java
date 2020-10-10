@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Employee;
+import models.Client;
 import utils.DBUtil;
 
 /**
@@ -36,11 +36,12 @@ public class ClientsDestroyServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
-            e.setDelete_flag(1);
+            Client e = em.find(Client.class, (Integer)(request.getSession().getAttribute("client_id")));
+            e.setDelete_flag(1); //追加
             e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
             em.getTransaction().begin();
+            em.remove(e); //追加
             em.getTransaction().commit();
             em.close();
             request.getSession().setAttribute("flush", "削除が完了しました。");

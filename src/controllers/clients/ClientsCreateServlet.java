@@ -59,6 +59,7 @@ public class ClientsCreateServlet extends HttpServlet {
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
 
+            r.setDelete_flag(0);
             List<String> errors = ClientValidator.validate(r);
             if(errors.size() > 0) {
                 em.close();

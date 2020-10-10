@@ -4,9 +4,14 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${client != null}">
-                <h2>顧客　編集ページ</h2>
+                <h2>id : ${client.id} の顧客情報　編集ページ</h2>
                 <form method="POST" action="<c:url value='/clients/update' />">
                     <c:import url="_form.jsp" />
+                </form>
+
+                <p><a href="#" onclick="confirmDestroy();">この顧客情報を削除する</a></p>
+                <form method="POST" action="<c:url value='/clients/destroy' />">
+                    <input type="hidden" name="_token" value="${_token}" />
                 </form>
                 <script>
                     function confirmDestroy() {

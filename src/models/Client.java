@@ -25,6 +25,14 @@ import javax.persistence.Table;
             name = "getClientsCount",
             query = "SELECT COUNT(r) FROM Client AS r"
             ),
+    @NamedQuery(
+            name = "getMyAllClients",
+            query = "SELECT r FROM Client AS r WHERE r.employee = :employee ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyClientsCount",
+            query = "SELECT COUNT(r) FROM Client AS r WHERE r.employee = :employee"
+            )
 })
 @Entity
 public class Client {
@@ -53,8 +61,8 @@ public class Client {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    //@Column(name = "delete_flag", nullable = false)
-    //private Integer delete_flag;
+    @Column(name = "delete_flag", nullable = false)
+    private Integer delete_flag;
 
     public Integer getId() {
         return id;
@@ -112,11 +120,11 @@ public class Client {
         this.updated_at = updated_at;
     }
 
-    /*public Integer getDelete_flag() {
+    public Integer getDelete_flag() {
         return delete_flag;
     }
 
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
-    }*/
+    }
 }
